@@ -31,44 +31,44 @@ namespace CompassSurvey.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TEntity>> Get(int id)
         {
-            var movie = await repository.Get(id);
-            if (movie == null)
+            var survey = await repository.Get(id);
+            if (survey == null)
             {
                 return NotFound();
             }
-            return movie;
+            return survey;
         }
 
         // PUT: api/[controller]/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, TEntity movie)
+        public async Task<IActionResult> Put(int id, TEntity survey)
         {
-            if (id != movie.Id)
+            if (id != survey.Id)
             {
                 return BadRequest();
             }
-            await repository.Update(movie);
+            await repository.Update(survey);
             return NoContent();
         }
 
         // POST: api/[controller]
         [HttpPost]
-        public async Task<ActionResult<TEntity>> Post(TEntity movie)
+        public async Task<ActionResult<TEntity>> Post(TEntity survey)
         {
-            await repository.Add(movie);
-            return CreatedAtAction("Get", new { id = movie.Id }, movie);
+            await repository.Add(survey);
+            return CreatedAtAction("Get", new { id = survey.Id }, survey);
         }
 
         // DELETE: api/[controller]/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<TEntity>> Delete(int id)
         {
-            var movie = await repository.Delete(id);
-            if (movie == null)
+            var survey = await repository.Delete(id);
+            if (survey == null)
             {
                 return NotFound();
             }
-            return movie;
+            return survey;
         }
 
     }

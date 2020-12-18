@@ -1,12 +1,12 @@
 ﻿using CompassSurvey.Data;
+using CompassSurvey.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CompassSurvey.Models
 {
-    public class Question : IEntity
+    public class QuestionDto : IEntity
     {
         [Key]
         public int Id { get; set; }
@@ -15,12 +15,6 @@ namespace CompassSurvey.Models
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public int QuestionType { get; set; }
-        public List<Option> Options { get; set; }
-
-        [ForeignKey("SurveyQuestion")]
-        public virtual int SurveyQuestionId { get; set; }
-        public virtual Survey SurveyQuestion { get; set; }
-
-
+        public List<OptionDto> Options { get; set; }
     }
 }

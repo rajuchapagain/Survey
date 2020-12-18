@@ -21,12 +21,14 @@ namespace CompassSurvey
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<CompassDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("SurveyDBConnection")));
-
             //All the repositories registration goes here
             Registration.RegisterRepositories(services);
+
+            services.AddDbContext<CompassDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SurveyDBConnection")));
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSwaggerGen();
+
+
         }
 
 
@@ -40,6 +42,13 @@ namespace CompassSurvey
             }
 
             app.UseHttpsRedirection();
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Survey API");
+            });
 
             app.UseRouting();
 

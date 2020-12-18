@@ -8,14 +8,16 @@ namespace CompassSurvey.Data.EFCore
             where TEntity : class, IEntity
             where TContext : DbContext
     {
-        private readonly TContext context;
+        internal readonly TContext context;
         public EfCoreRepository(TContext context)
         {
             this.context = context;
+
         }
         public async Task<TEntity> Add(TEntity entity)
         {
             context.Set<TEntity>().Add(entity);
+
             await context.SaveChangesAsync();
             return entity;
         }
@@ -36,12 +38,17 @@ namespace CompassSurvey.Data.EFCore
 
         public async Task<TEntity> Get(int id)
         {
-            return await context.Set<TEntity>().FindAsync(id);
+            //Extension class GetIncludePaths is added to do the eager loading so that it returns the nested objects
+            var query = context.Set<TEntity>().Include(context.GetIncludePaths(typeof(TEntity)));
+            return await query.FirstAsync(p => p.Id == id);
+
         }
 
         public async Task<List<TEntity>> GetAll()
         {
-            return await context.Set<TEntity>().ToListAsync();
+            //Extension class GetIncludePaths is added to do the eager loading so that it returns the nested objects
+            var query = context.Set<TEntity>().Include(context.GetIncludePaths(typeof(TEntity)));
+            return await query.ToListAsync();
         }
 
         public async Task<TEntity> Update(TEntity entity)

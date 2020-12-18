@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CompassSurvey.Migrations
 {
-    public partial class changes : Migration
+    public partial class initialdatamigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "SurveyAnswer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubmittedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SurveyId = table.Column<int>(type: "int", nullable: false),
+                    QuestionId = table.Column<int>(type: "int", nullable: false),
+                    SelectedOption = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SurveyAnswer", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "SurveyQuestion",
                 columns: table => new
@@ -31,7 +47,7 @@ namespace CompassSurvey.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     QuestionType = table.Column<int>(type: "int", nullable: false),
-                    SurveyQuestionId = table.Column<int>(type: "int", nullable: true)
+                    SurveyQuestionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,23 +57,7 @@ namespace CompassSurvey.Migrations
                         column: x => x.SurveyQuestionId,
                         principalTable: "SurveyQuestion",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SurveyAnswer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SubmittedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SurveyId = table.Column<int>(type: "int", nullable: false),
-                    QuestionId = table.Column<int>(type: "int", nullable: false),
-                    SelectedOptionId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SurveyAnswer", x => x.Id);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,8 +67,7 @@ namespace CompassSurvey.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    QuestionId = table.Column<int>(type: "int", nullable: true),
-                    SurveyAnswerId = table.Column<int>(type: "int", nullable: true)
+                    QuestionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,13 +77,7 @@ namespace CompassSurvey.Migrations
                         column: x => x.QuestionId,
                         principalTable: "Question",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Option_SurveyAnswer_SurveyAnswerId",
-                        column: x => x.SurveyAnswerId,
-                        principalTable: "SurveyAnswer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -93,50 +86,24 @@ namespace CompassSurvey.Migrations
                 column: "QuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Option_SurveyAnswerId",
-                table: "Option",
-                column: "SurveyAnswerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Question_SurveyQuestionId",
                 table: "Question",
                 column: "SurveyQuestionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SurveyAnswer_SelectedOptionId",
-                table: "SurveyAnswer",
-                column: "SelectedOptionId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_SurveyAnswer_Option_SelectedOptionId",
-                table: "SurveyAnswer",
-                column: "SelectedOptionId",
-                principalTable: "Option",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Option_Question_QuestionId",
-                table: "Option");
+            migrationBuilder.DropTable(
+                name: "Option");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Option_SurveyAnswer_SurveyAnswerId",
-                table: "Option");
+            migrationBuilder.DropTable(
+                name: "SurveyAnswer");
 
             migrationBuilder.DropTable(
                 name: "Question");
 
             migrationBuilder.DropTable(
                 name: "SurveyQuestion");
-
-            migrationBuilder.DropTable(
-                name: "SurveyAnswer");
-
-            migrationBuilder.DropTable(
-                name: "Option");
         }
     }
 }

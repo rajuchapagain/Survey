@@ -26,10 +26,7 @@ namespace CompassSurvey.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SurveyAnswerId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -38,8 +35,6 @@ namespace CompassSurvey.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
-
-                    b.HasIndex("SurveyAnswerId");
 
                     b.ToTable("Option");
                 });
@@ -63,7 +58,7 @@ namespace CompassSurvey.Migrations
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SurveyQuestionId")
+                    b.Property<int>("SurveyQuestionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -76,33 +71,7 @@ namespace CompassSurvey.Migrations
                     b.ToTable("Question");
                 });
 
-            modelBuilder.Entity("CompassSurvey.Models.SurveyAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SelectedOptionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubmittedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SelectedOptionId");
-
-                    b.ToTable("SurveyAnswer");
-                });
-
-            modelBuilder.Entity("CompassSurvey.Models.SurveyQuestion", b =>
+            modelBuilder.Entity("CompassSurvey.Models.Survey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,31 +86,50 @@ namespace CompassSurvey.Migrations
                     b.ToTable("SurveyQuestion");
                 });
 
+            modelBuilder.Entity("CompassSurvey.Models.SurveyAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SelectedOption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubmittedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SurveyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SurveyAnswer");
+                });
+
             modelBuilder.Entity("CompassSurvey.Models.Option", b =>
                 {
-                    b.HasOne("CompassSurvey.Models.Question", null)
+                    b.HasOne("CompassSurvey.Models.Question", "Question")
                         .WithMany("Options")
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("CompassSurvey.Models.SurveyAnswer", null)
-                        .WithMany("Options")
-                        .HasForeignKey("SurveyAnswerId");
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("CompassSurvey.Models.Question", b =>
                 {
-                    b.HasOne("CompassSurvey.Models.SurveyQuestion", null)
+                    b.HasOne("CompassSurvey.Models.Survey", "SurveyQuestion")
                         .WithMany("Questions")
-                        .HasForeignKey("SurveyQuestionId");
-                });
+                        .HasForeignKey("SurveyQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("CompassSurvey.Models.SurveyAnswer", b =>
-                {
-                    b.HasOne("CompassSurvey.Models.Option", "SelectedOption")
-                        .WithMany()
-                        .HasForeignKey("SelectedOptionId");
-
-                    b.Navigation("SelectedOption");
+                    b.Navigation("SurveyQuestion");
                 });
 
             modelBuilder.Entity("CompassSurvey.Models.Question", b =>
@@ -149,12 +137,7 @@ namespace CompassSurvey.Migrations
                     b.Navigation("Options");
                 });
 
-            modelBuilder.Entity("CompassSurvey.Models.SurveyAnswer", b =>
-                {
-                    b.Navigation("Options");
-                });
-
-            modelBuilder.Entity("CompassSurvey.Models.SurveyQuestion", b =>
+            modelBuilder.Entity("CompassSurvey.Models.Survey", b =>
                 {
                     b.Navigation("Questions");
                 });
