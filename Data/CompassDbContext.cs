@@ -17,12 +17,10 @@ namespace CompassSurvey.Data
             modelBuilder.Entity<Survey>().HasMany(q => q.Questions).WithOne(sq => sq.SurveyQuestion).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Question>().HasMany(o => o.Options).WithOne(q => q.Question).OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Survey>().Property(x => x.Id).UseIdentityColumn(seed: 1000, increment: 1);
+            modelBuilder.Entity<Survey>().Property(x => x.Id).UseIdentityColumn(seed: 100, increment: 1);
             modelBuilder.Entity<SurveyAnswer>().Property(x => x.Id).UseIdentityColumn(seed: 1000, increment: 1);
             modelBuilder.Entity<Option>().Property(x => x.Id).UseIdentityColumn(seed: 1, increment: 1);
             modelBuilder.Entity<Question>().Property(x => x.Id).UseIdentityColumn(seed: 1000, increment: 1);
-
-
         }
 
 

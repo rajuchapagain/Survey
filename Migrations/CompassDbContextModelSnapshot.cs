@@ -26,7 +26,7 @@ namespace CompassSurvey.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int?>("QuestionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -44,7 +44,7 @@ namespace CompassSurvey.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .UseIdentityColumn(1000);
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -58,7 +58,7 @@ namespace CompassSurvey.Migrations
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SurveyQuestionId")
+                    b.Property<int?>("SurveyQuestionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -76,7 +76,7 @@ namespace CompassSurvey.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .UseIdentityColumn(100);
 
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
@@ -91,7 +91,7 @@ namespace CompassSurvey.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .UseIdentityColumn(1000);
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
@@ -115,8 +115,7 @@ namespace CompassSurvey.Migrations
                     b.HasOne("CompassSurvey.Models.Question", "Question")
                         .WithMany("Options")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Question");
                 });
@@ -126,8 +125,7 @@ namespace CompassSurvey.Migrations
                     b.HasOne("CompassSurvey.Models.Survey", "SurveyQuestion")
                         .WithMany("Questions")
                         .HasForeignKey("SurveyQuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("SurveyQuestion");
                 });

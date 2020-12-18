@@ -17,8 +17,6 @@ namespace CompassSurvey.Models
         public int QuestionType { get; set; }
         public List<Option> Options { get; set; }
 
-        [ForeignKey("SurveyQuestion")]
-        public virtual int SurveyQuestionId { get; set; }
         public virtual Survey SurveyQuestion { get; set; }
 
 
