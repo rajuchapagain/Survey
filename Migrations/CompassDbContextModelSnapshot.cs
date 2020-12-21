@@ -58,7 +58,7 @@ namespace CompassSurvey.Migrations
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SurveyQuestionId")
+                    b.Property<int>("SurveyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -66,7 +66,7 @@ namespace CompassSurvey.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SurveyQuestionId");
+                    b.HasIndex("SurveyId");
 
                     b.ToTable("Question");
                 });
@@ -83,31 +83,7 @@ namespace CompassSurvey.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SurveyQuestion");
-                });
-
-            modelBuilder.Entity("CompassSurvey.Models.SurveyAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn(1000);
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SelectedOption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubmittedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SurveyAnswer");
+                    b.ToTable("Survey");
                 });
 
             modelBuilder.Entity("CompassSurvey.Models.Option", b =>
@@ -122,12 +98,13 @@ namespace CompassSurvey.Migrations
 
             modelBuilder.Entity("CompassSurvey.Models.Question", b =>
                 {
-                    b.HasOne("CompassSurvey.Models.Survey", "SurveyQuestion")
+                    b.HasOne("CompassSurvey.Models.Survey", "Survey")
                         .WithMany("Questions")
-                        .HasForeignKey("SurveyQuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SurveyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SurveyQuestion");
+                    b.Navigation("Survey");
                 });
 
             modelBuilder.Entity("CompassSurvey.Models.Question", b =>

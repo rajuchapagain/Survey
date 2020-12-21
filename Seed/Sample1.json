@@ -1,0 +1,83 @@
+{
+  "name": "Survey 1",
+  "questions": [
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Most popular lunch in Australia?",
+      "subTitle": "In million",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Rice"
+        },
+        {
+          "text": "Pasta"
+        },
+        {
+          "text": "Bread"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Hari",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "What is your favourite programming language",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "C#"
+        },
+        {
+          "text": "Java"
+        },
+        {
+          "text": "Python"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Maximum jobs available for IT graduates in which city?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Sydney"
+        },
+        {
+          "text": "Melbourn"
+        },
+        {
+          "text": "Brisbane"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "What is your favourite TV show?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Tough Talk"
+        },
+        {
+          "text": "Bravo Delta"
+        },
+        {
+          "text": "60 Minutes"
+        }
+      ]
+
+    }
+
+
+  ]
+}

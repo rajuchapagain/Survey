@@ -1,0 +1,83 @@
+{
+  "name": "Survey 3",
+  "questions": [
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Total death due to COVID-19?",
+      "subTitle": "In million",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "20"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "2"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Hari",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Total world population?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "60B"
+        },
+        {
+          "text": "70B"
+        },
+        {
+          "text": "80B"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is the Prime Minister of Australia?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Scott Morrison"
+        },
+        {
+          "text": "Tony Abott"
+        },
+        {
+          "text": "Michael Clark"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is the prime Minister of New Zealand?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Jacinda Ardern"
+        },
+        {
+          "text": "Bravo Delta"
+        },
+        {
+          "text": "Tom Cruize"
+        }
+      ]
+
+    }
+
+
+  ]
+}

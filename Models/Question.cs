@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace CompassSurvey.Models
 {
@@ -17,8 +18,10 @@ namespace CompassSurvey.Models
         public int QuestionType { get; set; }
         public List<Option> Options { get; set; }
 
-        public virtual Survey SurveyQuestion { get; set; }
-
-
+        [IgnoreDataMember]
+        [ForeignKey("Survey")]
+        public virtual int SurveyId { get; set; }
+        [IgnoreDataMember]
+        public virtual Survey Survey { get; set; }
     }
 }

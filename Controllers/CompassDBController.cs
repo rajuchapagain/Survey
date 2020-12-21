@@ -40,16 +40,16 @@ namespace CompassSurvey.Controllers
         }
 
         // PUT: api/[controller]/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, TEntity survey)
-        {
-            if (id != survey.Id)
-            {
-                return BadRequest();
-            }
-            await repository.Update(survey);
-            return NoContent();
-        }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> Put(int id, TEntity survey)
+        //{
+        //    if (id != survey.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    await repository.Update(survey);
+        //    return NoContent();
+        //}
 
         // POST: api/[controller]
         [HttpPost]

@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\EFCore\EfCoreOptionRepository.cs" />
+    <Compile Remove="Data\EFCore\EfCoreQuestionRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Seed\Sample1.json" />
+    <Content Remove="Seed\Sample2.json" />
+    <Content Remove="Seed\Sample3.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Seed\Sample1.json" />
+    <EmbeddedResource Include="Seed\Sample2.json" />
+    <EmbeddedResource Include="Seed\Sample3.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />

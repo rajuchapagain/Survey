@@ -21,6 +21,7 @@ namespace CompassSurvey
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             //All the repositories registration goes here
             Registration.RegisterRepositories(services);
 
@@ -36,6 +37,17 @@ namespace CompassSurvey
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<CompassDbContext>().Database.Migrate();  //To initialize the migration if not exist
+            }
+
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            );
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,6 +60,7 @@ namespace CompassSurvey
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Survey API");
+                c.DocumentTitle = "Compass Survey";
             });
 
             app.UseRouting();

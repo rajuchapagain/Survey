@@ -7,9 +7,8 @@ namespace CompassSurvey.Data.EFCore
         public static void RegisterRepositories(IServiceCollection services)
         {
             services.AddScoped<EfCoreSurveyRepository>();
-            services.AddScoped<EfCoreSurveyAnswerRepository>();
-            services.AddScoped<EfCoreQuestionRepository>();
-            services.AddScoped<EfCoreOptionRepository>();
+            //services.AddScoped<EfCoreQuestionRepository>();
+            //services.AddScoped<EfCoreOptionRepository>();
         }
     }
 }

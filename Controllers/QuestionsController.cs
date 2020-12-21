@@ -4,15 +4,15 @@ using CompassSurvey.Data.EFCore;
 
 namespace CompassSurvey.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class QuestionsController : CompassDBController<Question, EfCoreQuestionRepository>
-    {
-        public QuestionsController(EfCoreQuestionRepository repository) : base(repository)
-        {
+    // [Route("api/[controller]")]
+    // [ApiController]
+    //public class QuestionsController : CompassDBController<Question, EfCoreQuestionRepository>
+    //{
+    //    public QuestionsController(EfCoreQuestionRepository repository) : base(repository)
+    //    {
 
-        }
-    }
+    //    }
+    //}
 
 
 

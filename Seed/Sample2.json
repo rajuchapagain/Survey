@@ -1,0 +1,83 @@
+{
+  "name": "Survey 2",
+  "questions": [
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is your favourite footballer?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Neymar"
+        },
+        {
+          "text": "Messi"
+        },
+        {
+          "text": "Ronaldo"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Hari",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is the last world cup winner?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Australia"
+        },
+        {
+          "text": "France"
+        },
+        {
+          "text": "Brazil"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is the Big Bash League winner in 2018?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Melbourne Start"
+        },
+        {
+          "text": "Adelaid Striker"
+        },
+        {
+          "text": "Sydney Thunder"
+        }
+      ]
+
+    },
+    {
+      "createdBy": "Ram",
+      "createdDateTime": "2020-12-18T07:43:30.713Z",
+      "title": "Who is the Female world champion in Tennis?",
+      "subTitle": "",
+      "questionType": 3,
+      "options": [
+        {
+          "text": "Serena williams"
+        },
+        {
+          "text": "Maria Sarapova"
+        },
+        {
+          "text": "Anasthesia Kugnetsova"
+        }
+      ]
+
+    }
+
+
+  ]
+}
